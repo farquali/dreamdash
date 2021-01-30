@@ -7,25 +7,34 @@ from datetime import datetime
 
 import files as f
 
+df = pd.DataFrame()
 
 def main():
 
+	read_dream_file()
+	print(get_random_dream(df))
+
+
+
+def get_random_dream(df):
+
+	import random
+
+	dream_count = df.shape[0]
+	return df["Dream"][random.randint(0,dream_count)]
+
+def read_dream_file():
 	import googapi as go
 
+	global df
 	data = go.pull_sheet_data(f.SCOPES,f.MEGA_ID,f.MEGA_RANGE)
 	df = pd.DataFrame(data[1:], columns=data[0])
 
 	#replace null Dreamer col with 'Unknown'
 	df["Dreamer"].fillna(value="Unknown",inplace=True)
-	print(df["Dreamer"][0])
-	print(df.shape[0])
 
 
-def get_random_dream(df):
-	import random
 
-
-print("Welcome to Dream Dash")
 
 main()
 

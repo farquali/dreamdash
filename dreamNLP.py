@@ -21,10 +21,32 @@ def build_theme_dictionaries(df):
 		for theme_str in themes:
 			if theme_str != None:
 				tmp_list += theme_str.split(",")
-			theme_dict[dreamer] = [x.strip() for x in tmp_list if not x==""] #strip away empty space at start or end
+		tmp_list = [x.strip().replace("\\","").title() for x in tmp_list if not x==""] #strip away empty space at start or end
+
+		print(f"Before lemma: {tmp_list}")
+		#Get the root word for each theme/standardise
+		theme_dict[dreamer] = lemmatize(tmp_list)
 
 	for k,v in theme_dict.items():
 		print(f"{k}: {v}")
+
+def lemmatize(theme_list):
+	#import textblob
+	pass
+	#return [Word(x).lemmatize() for x in theme_list]
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

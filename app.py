@@ -9,7 +9,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import files as f
-import dreamNLP as nlp
+import wclouds as wc
 
 #global vars
 df = pd.DataFrame()
@@ -23,7 +23,7 @@ def main():
 	set_random_dream(df)
 	#data_manipulation()
 	#configure_dash_layout()
-	nlp.word_clouds(df)
+	wc.word_clouds(df)
 
 
 def set_random_dream(df):
@@ -39,7 +39,7 @@ def set_random_dream(df):
 
 	global rand_dream_txt
 	rand_dream_txt = f"{title}: {dream_txt}"
-	print(rand_dream_txt)
+	#print(rand_dream_txt)
 
 #Read in Mega Dream googlesheet as a dataframe
 def read_dream_file():
